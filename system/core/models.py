@@ -10,10 +10,17 @@ class User(AbstractUser):
     phone = models.CharField(max_length=10)
     
     
-class Transaction:
-    id:int
-    donor_id:int
-    img: str
-    desc:str
-    fk_Rid: int
+class Transaction(models.Model): # Follow the models.field format
+    # I've done the basic thing because I had to verify my part works
+    donor_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    # id:int
+    # donor_id:int
+    # img: str
+    # desc:str
+    # fk_Rid: int
 
+
+class Request(models.Model):
+    transaction_id = models.ForeignKey(Transaction, on_delete=models.CASCADE)
+    reason = models.TextField()
+    applicant_id = models.ForeignKey(User, on_delete=models.CASCADE)
