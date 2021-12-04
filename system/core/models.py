@@ -9,13 +9,13 @@ class User(AbstractUser):
     country = models.CharField(max_length=50)
     phone = models.CharField(max_length=10)
    
-# class Transaction(models.Model):
+class Transaction(models.Model):
 
-#     name=models.CharField(max_length=100)
-#     desc= models.TextField()
-#     img = models.ImageField(upload_to='pics')
-#     donor_id = models.ForeignKey(User, on_delete=models.CASCADE)
-#     accepted_req_id = models.ForeignKey(Request, on_delete=models.CASCADE)
+    name=models.CharField(max_length=100)
+    desc= models.TextField()
+    img = models.ImageField(upload_to='pics')
+    donor_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    accepted_req_id = models.ForeignKey('Request', on_delete=models.CASCADE, blank=True)
 
 
 class Request(models.Model):
