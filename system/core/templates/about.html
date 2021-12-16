@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
         rel="stylesheet">
     <!-- //google-fonts -->
     <!-- Template CSS Style link -->
-    <link rel="stylesheet" href="./assets/css/style-starter.css">
+    <link rel="stylesheet"  href="{% static 'css/style-starter.css' %}">
 </head>
 
 <body>
@@ -20,12 +21,12 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg stroke">
                 <h1>
-                    <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <a class="navbar-brand d-flex align-items-center" href="{% url 'index-page' %}">
                         <i class="fa fa-paw mr-1" aria-hidden="true"></i>Pet Care</a>
                 </h1>
                 <!-- if logo is image enable this   
-    <a class="navbar-brand" href="#index.html">
-        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+    <a class="navbar-brand"  href="#index.html">
+        <img src="{% static '' %}" src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
     </a> -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                     data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -37,19 +38,19 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+                            <a class="nav-link" href="{% url 'index-page' %}"  href="index.html">Home</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="{% url 'about-page' %}"  href="about.html">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="explore.html">Explore</a>
+                            <a class="nav-link" href="{% url 'explore-page' %}"  href="explore.html">Explore</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="profile.html">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="{% url 'contact-page' %}"  href="contact.html">Contact</a>
                         </li>
                         <!-- search button -->
                         <!-- <div class="search-right">
@@ -91,7 +92,7 @@
             <div class="container">
                 <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">About Us</h4>
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{% url 'index-page' %}"  href="index.html">Home</a></li>
                     <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>About Us</li>
                 </ul>
             </div>
@@ -124,7 +125,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 about-2-secs-right mt-lg-0 mt-5">
-                    <img src="./assets/images/about2.jpg" alt="" class="img-fluid img-responsive" />
+                    <img src="{% static 'images/about2.jpg' %}" alt="" class="img-fluid img-responsive" />
                 </div>
             </div>
         </div>
@@ -149,9 +150,9 @@
                 <div class="team-info col-md-2"></div> 
                 <div class="team-info col-md-3 col-6">
                     <div class="column position-relative">
-                        <a href="#url"><img src="./assets/images/team1.jpeg" alt="" class="img-fluid" /></a>
+                        <a href="#url"><img src="{% static 'images/team1.jpeg' %}" alt="" class="img-fluid" /></a>
                     </div>
-                    <h4><a href="#team">Meith Navlakha</a></h4>
+                    <h4><a  href="#team">Meith Navlakha</a></h4>
                     <p>Developer & Co-Founder</p>
                     <div class="team-info">
                         <div class="caption">
@@ -162,7 +163,7 @@
                                 <a class="twitter" href="#url">
                                     <span class="fa fa-twitter"></span>
                                 </a>
-                                <a class="instagram" href="#url">
+                                <a class="instagram"  href="#url">
                                     <span class="fa fa-instagram"></span>
                                 </a>
                             </div>
@@ -172,9 +173,9 @@
                 
                 <div class="team-info col-md-3 col-6 mt-md-0 mt-sm-5 mt-5">
                     <div class="column position-relative">
-                        <a href="#url"><img src="./assets/images/team1.jpeg" alt="" class="img-fluid" /></a>
+                        <a href= href="#url"><img src="{% static 'images/team1.jpeg' %}" alt="" class="img-fluid" /></a>
                     </div>
-                    <h4><a href="#team">Rahul Raheja</a> </h4>
+                    <h4><a href= href="#team">Rahul Raheja</a> </h4>
                     <p>Developer& Co-Founder</p>
                     <div class="team-info">
                         <div class="caption">
@@ -194,7 +195,7 @@
                 </div>
                 <div class="team-info col-md-3 col-6 mt-md-0 mt-sm-5 mt-5">
                     <div class="column position-relative">
-                        <a href="#url"><img src="./assets/images/team1.jpeg" alt="" class="img-fluid" /></a>
+                        <a href="#url"><img src="{% static 'images/team1.jpeg' %}" alt="" class="img-fluid" /></a>
                     </div>
                     <h4><a href="#team">Nishant A Kumar</a></h4>
                     <p>Developer& Co-Founder</p>                    
@@ -204,7 +205,7 @@
                                 <a class="fac" href="#url">
                                     <span class="fa fa-facebook"></span>
                                 </a>
-                                <a class="twitter" href="#url">
+                                <a class="twitter"  href="#url">
                                     <span class="fa fa-twitter"></span>
                                 </a>
                                 <a class="instagram" href="#url">
@@ -255,7 +256,7 @@
                                 <ul>
                                     <li class="anim1 d-flex">
                                         <div class="col-2 img-quote">
-                                            <img src="./assets/images/testi1.jpg" class="img-fluid rounded-circle"
+                                            <img src="{% static '' %}" src="./assets/images/testi1.jpg" class="img-fluid rounded-circle"
                                                 alt="client image" />
                                         </div>
                                         <div class="col-10 content-testi">
@@ -272,7 +273,7 @@
                                     </li>
                                     <li class="anim2 d-flex mt-4">
                                         <div class="col-2 img-quote">
-                                            <img src="./assets/images/testi2.jpg" class="img-fluid rounded-circle"
+                                            <img src="{% static '' %}" src="./assets/images/testi2.jpg" class="img-fluid rounded-circle"
                                                 alt="client image" />
                                         </div>
                                         <div class="col-10 content-testi">
@@ -303,7 +304,7 @@
             <div class="container">
                 <div class="row footer-p">
                     <div class="col-lg-4 pr-lg-5">
-                        <a class="logo" href="index.html"><i class="fa fa-paw" aria-hidden="true"></i> Pet Care</a>
+                        <a class="logo" href="{% url 'index-page' %}" <i class="fa fa-paw" aria-hidden="true"></i> Pet Care</a>
                         <p class="mt-4">Duis imperdiet sapien tortor, vitae congue diam auctor vitae. Aliquam
                             eget turpis ornare, euismod ligul aeget, enenatis dui. </p>
                     </div>
@@ -312,24 +313,13 @@
                         <div class="row">
                             <div class="col-6 column">
                                 <ul class="footer-gd-16">
-                                    <li><a href="index.html"><i class="fa fa-angle-right"
+                                    <li><a href="{% url 'index-page' %}"><i class="fa fa-angle-right"
                                                 aria-hidden="true"></i>Home</a></li>
-                                    <li><a href="about.html"><i class="fa fa-angle-right" aria-hidden="true"></i>About</a></li>
-                                    <li><a href="explore.html"><i class="fa fa-angle-right"
+                                    <li><a href="{% url 'about-page' %}"><i class="fa fa-angle-right" aria-hidden="true"></i>About</a></li>
+                                    <li><a href="{% url 'explore-page' %}"><i class="fa fa-angle-right"
                                                 aria-hidden="true"></i>Explore</a></li>
-                                    <li><a href="contact.html"><i class="fa fa-angle-right"
+                                    <li><a href="{% url 'contact-page' %}"><i class="fa fa-angle-right"
                                                 aria-hidden="true"></i>Contact</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 column pl-0">
-                                <ul class="footer-gd-16">
-                                    <li><a href="#support"><i class="fa fa-angle-right"
-                                                aria-hidden="true"></i>Support</a></li>
-                                    <li><a href="#privacy"><i class="fa fa-angle-right" aria-hidden="true"></i>Privacy
-                                            Policy</a></li>
-                                    <li><a href="#terms"><i class="fa fa-angle-right" aria-hidden="true"></i>Terms and
-                                            conditions</a></li>
-                                    <li><a href="#faq"><i class="fa fa-angle-right" aria-hidden="true"></i>FAQ</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -398,11 +388,12 @@
     <!-- //move top -->
 
     <!-- common jquery plugin -->
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"</script>
+        
     <!-- //common jquery plugin -->
 
     <!-- theme switch js (light and dark)-->
-    <script src="./assets/js/theme-change.js"></script>
+    <script src="{% static 'js/theme-change.js' %}"</script>
     <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
@@ -480,7 +471,7 @@
     <!-- //disable body scroll which navbar is in active -->
 
     <!--bootstrap-->
-    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"</script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 </body>

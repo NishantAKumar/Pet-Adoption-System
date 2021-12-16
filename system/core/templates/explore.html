@@ -1,7 +1,4 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
--->
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -15,7 +12,7 @@ Author URL: http://w3layouts.com
         rel="stylesheet">
     <!-- //google-fonts -->
     <!-- Template CSS Style link -->
-    <link rel="stylesheet" href="././assets/css/style-starter.css">
+    <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
 </head>
 
 <body>
@@ -24,7 +21,7 @@ Author URL: http://w3layouts.com
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg stroke">
                 <h1>
-                    <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <a class="navbar-brand d-flex align-items-center" href="{% url 'index-page' %}">
                         <i class="fa fa-paw mr-1" aria-hidden="true"></i>Pet Care</a>
                 </h1>
                 <!-- if logo is image enable this   
@@ -41,19 +38,19 @@ Author URL: http://w3layouts.com
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+                            <a class="nav-link" href="{% url 'index-page' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="{% url 'about-page' %}">About</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="explore.html">explore</a>
+                            <a class="nav-link" href="{% url 'explore-page' %}">explore</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="profile.html">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="{% url 'contact-page' %}">Contact</a>
                         </li>
                        
                        
@@ -85,7 +82,7 @@ Author URL: http://w3layouts.com
             <div class="container">
                 <h4 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2">Explore</h4>
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{% url 'index-page' %}">Home</a></li>
                     <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Explore</li>
                 </ul>
             </div>
@@ -108,11 +105,11 @@ Author URL: http://w3layouts.com
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card-single">
                         <div class="grids5-info">
-                            <a href="#blog"><img src="./assets/images/img1.jpg" alt="" /></a>
+                            <a href="#blog"><img src="{% static 'images/img1.jpg' %}" alt="" /></a>
                             <div class="blog-info">
                                 <h4><a href="#blog">Donec sed teus enime</a></h4>
                                 <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <a class="btn btn-style" href="petDetails.html">View</a>
+                                <a class="btn btn-style" href="pet-details-page">View</a>
                             </div>
                         </div>
                     </div>
@@ -120,11 +117,11 @@ Author URL: http://w3layouts.com
                 <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
                     <div class="blog-card-single">
                         <div class="grids5-info">
-                            <a href="#blog"><img src="./assets/images/img2.jpg" alt="" /></a>
+                            <a href="#blog"><img src="{% static 'images/img2.jpg' %}" alt="" /></a>
                             <div class="blog-info">
                                 <h4><a href="#blog">It's enim ad minim aute</a></h4>
                                 <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <a class="btn btn-style" href="petDetails.html">View</a>
+                                <a class="btn btn-style" href="{% url 'pet-details-page' %}">View</a>
                             </div>
                         </div>
                     </div>
@@ -132,11 +129,11 @@ Author URL: http://w3layouts.com
                 <div class="col-lg-4 col-md-6 mt-lg-0 mt-4">
                     <div class="blog-card-single">
                         <div class="grids5-info">
-                            <a href="#blog"><img src="./assets/images/img3.jpg" alt="" /></a>
+                            <a href="#blog"><img src="{% static 'images/img3.jpg' %}" alt="" /></a>
                             <div class="blog-info">
                                 <h4><a href="#blog">Ullamco laboris nisi uts</a></h4>
                                 <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <a class="btn btn-style" href="petDetails.html">View</a>
+                                <a class="btn btn-style" href="{% url 'pet-details-page' %}">View</a>
                             </div>
                         </div>
                     </div>
@@ -152,7 +149,7 @@ Author URL: http://w3layouts.com
             <div class="container">
                 <div class="row footer-p">
                     <div class="col-lg-4 pr-lg-5">
-                        <a class="logo" href="index.html"><i class="fa fa-paw" aria-hidden="true"></i> Pet Care</a>
+                        <a class="logo" href="{% url 'index-page' %}"><i class="fa fa-paw" aria-hidden="true"></i> Pet Care</a>
                         <p class="mt-4">Duis imperdiet sapien tortor, vitae congue diam auctor vitae. Aliquam
                             eget turpis ornare, euismod ligul aeget, enenatis dui. </p>
                     </div>
@@ -161,24 +158,13 @@ Author URL: http://w3layouts.com
                         <div class="row">
                             <div class="col-6 column">
                                 <ul class="footer-gd-16">
-                                    <li><a href="index.html"><i class="fa fa-angle-right"
+                                    <li><a href="{% url 'index-page' %}"><i class="fa fa-angle-right"
                                                 aria-hidden="true"></i>Home</a></li>
-                                    <li><a href="about.html"><i class="fa fa-angle-right" aria-hidden="true"></i>About</a></li>
-                                    <li><a href="explore.html"><i class="fa fa-angle-right"
+                                    <li><a href="{% url 'about-page' %}"><i class="fa fa-angle-right" aria-hidden="true"></i>About</a></li>
+                                    <li><a href="{% url 'explore-page' %}"><i class="fa fa-angle-right"
                                                 aria-hidden="true"></i>Explore</a></li>
-                                    <li><a href="contact.html"><i class="fa fa-angle-right"
+                                    <li><a href="{% url 'contact-page' %}"><i class="fa fa-angle-right"
                                                 aria-hidden="true"></i>Contact</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 column pl-0">
-                                <ul class="footer-gd-16">
-                                    <li><a href="#support"><i class="fa fa-angle-right"
-                                                aria-hidden="true"></i>Support</a></li>
-                                    <li><a href="#privacy"><i class="fa fa-angle-right" aria-hidden="true"></i>Privacy
-                                            Policy</a></li>
-                                    <li><a href="#terms"><i class="fa fa-angle-right" aria-hidden="true"></i>Terms and
-                                            conditions</a></li>
-                                    <li><a href="#faq"><i class="fa fa-angle-right" aria-hidden="true"></i>FAQ</a></li>
                                 </ul>
                             </div>
                         </div>
