@@ -123,8 +123,21 @@
                     </form>
                     {% endfor %}
                 </div>
+            </div>
+            <div class="right">
+                <h1 class="product_header">Your Transactions</h1>
+                <div class="product_info">
+                    {% for transaction in transactions %}
+                    <a href="{% url 'transaction-closing-page' transaction_id=transaction.id %}"><div class="descrow"><span style="color: rgb(221, 33, 90);">Pet Name</span>: <b>{{transaction.name}}</b></div></a>
+                    <form action="{% url 'transaction-delete-page' transaction_id=transaction.id %}" method="post" class="signin-form">
+                        {% csrf_token %}
+                            <div class="submit" style="margin-top: -30px; margin-left: 300px;">
+                                <button type="submit" class="btn btn-style-white btn-style-primary">Delete Transaction</button>
+                            </div>
+                    </form>
+                    {% endfor %}
                 </div>
-
+            </div>
                 
             </div>
 

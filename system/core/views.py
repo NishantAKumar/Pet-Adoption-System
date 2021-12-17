@@ -69,23 +69,20 @@ def petDetailsRenderer(request, transaction_id):
 def profileRenderer(request, user_id):
     if request.method == "GET":
         if request.user.id == user_id:
-            return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": True, "profile": User.objects.get(id=request.user.id), "requests": Request.objects.filter(applicant_id=request.user.id)})
+            return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": True, "profile": User.objects.get(id=request.user.id), "requests": Request.objects.filter(applicant_id=request.user.id), "transactions": Transaction.objects.filter(donor_id=request.user.id)})
         else:
             return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": False, "profile": User.objects.get(id=request.user.id)})
 
 
 def deleteReqest(request, request_id):
-    if request.method == "GET":
-        return render(request, TEMPLATE_MAPPING["request-delete-page"])
-
-    elif request.method == "POST":
+    if request.method == "POST":
         Request.objects.get(id=request_id).delete()
         messages.add_message(
             request, 
             messages.SUCCESS,
             "Request Deleted"
         )
-        return render(request, TEMPLATE_MAPPING["request-delete-page"])
+        return redirect(to=f"/profile/{request.user.id}")
 
 
 def user_login(request):
@@ -187,17 +184,14 @@ def transactionCreator(request):
 
 
 def transactionDeleter(request, transaction_id):
-    if request.method == "GET":
-        return render(request, TEMPLATE_MAPPING["transaction-delete-page"])
-
-    elif request.method == "POST":
+    if request.method == "POST":
         Transaction.objects.get(id=transaction_id).delete()
         messages.add_message(
             request, 
             messages.SUCCESS,
             "Transaction Deleted"
         )
-        return render(request, TEMPLATE_MAPPING["transaction-delete-page"])
+        return redirect(to=f"/profile/{request.user.id}")
 
 
 def transactionAcceptedAndClosed(request, transaction_id):
@@ -219,3 +213,8 @@ def transactionAcceptedAndClosed(request, transaction_id):
         return render(request, TEMPLATE_MAPPING["transaction-closing-page"])
 
 
+# Todo:
+# Html templates
+# Regex
+# Dark Mode check certain pages
+# Navbar dynamic
