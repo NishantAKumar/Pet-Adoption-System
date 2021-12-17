@@ -7,5 +7,8 @@ urlpatterns = [
     path("about/", views.aboutRenderer, name="about-page"),
     path("contact/", views.contactRenderer, name="contact-page"),
     path("pet/<int:transaction_id>", views.petDetailsRenderer, name="pet-details-page"),
-    path("profile/<int:user_id>", views.profileRenderer, name="profile-page")
+    path("profile/<int:user_id>", views.profileRenderer, name="profile-page"),
+    path("login/", views.user_login, name='login-page'),
+    path("register/", views.register, name="registration-page"),
+    path("logout/", views.user_logout, name="logout"),
 ]
