@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.utils import tree
 from .models import * 
 from django.contrib import messages
 from django.contrib.auth import login, logout
@@ -14,6 +15,9 @@ TEMPLATE_MAPPING = {
     "profile-page": "profile.html",
     "login-page": "login.html",
     "registration-page": "register.html",
+    "transaction-create-page" : "transactionCreate.html",
+    "transaction-delete-page" : "transactionDelete.html",
+    "transaction-closing-page": "transactionClosing.html"
 }
 
 def homeRenderer(request):
@@ -23,7 +27,7 @@ def homeRenderer(request):
 
 def exploreRenderer(request):
     if request.method == "GET":
-        return render(request, TEMPLATE_MAPPING["explore-page"], context={"objects": Transaction.objects.all()})
+        return render(request, TEMPLATE_MAPPING["explore-page"], context={"objects": Transaction.objects.filter(accepted_req_id__isnull=True)})
 
 
 def aboutRenderer(request):
@@ -97,7 +101,11 @@ def register(request):
             return render(request, TEMPLATE_MAPPING["registration-page"])
 
         if User.objects.filter(email=email).exists():
-            messages.add_message(request, messages.ERROR, "Email already exists!")
+            messages.add_message(
+                request,
+                messages.ERROR, 
+                "Email already exists!"
+                )
             return render(request, TEMPLATE_MAPPING["registration-page"])
         
         if password != confirm:
@@ -122,3 +130,61 @@ def user_logout(request):
         return redirect("/")
     elif not request.user.is_authenticated:
         return redirect("/login")
+
+
+def transactionCreator(request):
+    if request.method == "GET":
+        return render(request, TEMPLATE_MAPPING["transaction-create-page"])
+
+    elif request.method == "POST":
+        name = request.method.get("name")
+        desc = request.method.get("desc")
+        img = request.method.get("image")
+        donor = User.objects.get(id=request.user.id)
+        Transaction.objects.create(
+            name=name,
+            desc=desc,
+            img=img,
+            donor_id=donor
+        )
+        messages.add_message(
+            request, 
+            messages.SUCCESS,
+            "Transaction Created"
+        )
+        return render(request, TEMPLATE_MAPPING["transaction-create-page"])
+
+
+def transactionDeleter(request, transaction_id):
+    if request.method == "GET":
+        return render(request, TEMPLATE_MAPPING["transaction-delete-page"])
+
+    elif request.method == "POST":
+        Transaction.objects.get(id=transaction_id).delete()
+        messages.add_message(
+            request, 
+            messages.SUCCESS,
+            "Transaction Deleted"
+        )
+        return render(request, TEMPLATE_MAPPING["transaction-delete-page"])
+
+
+def transactionAcceptedAndClosed(request, transaction_id):
+    if request.method == "GET":
+        applicant_requests = Request.objects.filter(transaction_id=transaction_id)
+        return render(request, TEMPLATE_MAPPING["transaction-closing-page"], context={"applicants": applicant_requests})
+
+    if request.method == "POST":
+        applicant_id = request.POST.get("applicant")
+        applicant = User.objects.get(id=applicant_id)
+        transaction = Transaction.objects.get(id=transaction_id)
+        transaction.accepted_req_id = applicant
+        messages.add_message(
+            request,
+            messages.SUCCESS,
+            "Trasaction Completed and Closed"
+        )
+
+        return render(request, TEMPLATE_MAPPING["transaction-closing-page"])
+
+
