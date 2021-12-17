@@ -102,42 +102,20 @@
                 </div>
             </div>
             <div class="row">
+                {% for object in objects %}
                 <div class="col-lg-4 col-md-6">
                     <div class="blog-card-single">
                         <div class="grids5-info">
-                            <a href="#blog"><img src="{% static 'images/img1.jpg' %}" alt="" /></a>
+                            <a href="{{object.img.url}}"><img src="{{object.img.url}}" alt="" /></a>
                             <div class="blog-info">
-                                <h4><a href="#blog">Donec sed teus enime</a></h4>
-                                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <a class="btn btn-style" href="pet-details-page">View</a>
+                                <h4>{{object.name}}</h4>
+                                <p>{{object.desc}}</p>
+                                <a class="btn btn-style" href="{% url 'pet-details-page' transaction_id=object.id %}">See Details</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
-                    <div class="blog-card-single">
-                        <div class="grids5-info">
-                            <a href="#blog"><img src="{% static 'images/img2.jpg' %}" alt="" /></a>
-                            <div class="blog-info">
-                                <h4><a href="#blog">It's enim ad minim aute</a></h4>
-                                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <a class="btn btn-style" href="{% url 'pet-details-page' %}">View</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-lg-0 mt-4">
-                    <div class="blog-card-single">
-                        <div class="grids5-info">
-                            <a href="#blog"><img src="{% static 'images/img3.jpg' %}" alt="" /></a>
-                            <div class="blog-info">
-                                <h4><a href="#blog">Ullamco laboris nisi uts</a></h4>
-                                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <a class="btn btn-style" href="{% url 'pet-details-page' %}">View</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

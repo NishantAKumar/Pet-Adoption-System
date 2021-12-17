@@ -110,27 +110,26 @@
             <div class="left">
                 <div class="img_left">
                     <!-- For ZOOM  -->
-                    <img src="./assets/images/g44.jpg" alt="" class="image-zoom" >
+                    <img src="{{pet.img.url}}" alt="" class="image-zoom" >
                 </div>
 
             </div>
             <div class="right">
                 <h1 class="product_header">{{x.name}}</h1>
                 <div class="product_info">
-                   <div class="descrow"><span style="color: rgb(221, 33, 90);">PRODUCT CODE :</span> <b>{{x.product_code}}</b></div>
-                   <div class="descrow"><span style="color: rgb(221, 33, 90);">COLOUR</span> : {{x.colour}}</div>
-                    <div class="descrow"><span style="color: rgb(221, 33, 90);">THICKNESS</span> : {{x.thickness}}</div>
-                   <div class="descrow"><span style="color: rgb(221, 33, 90);">SIZE</span> : {{x.size}}</div>
-                   <div class="descrow"><span style="color: rgb(221, 33, 90);">MATERIAL</span> : {{x.material}}</div>
-                   <div class="descrow"><span style="color: rgb(221, 33, 90);">SURFACE FINISH</span> : {{x.surface_finish}}</div>
-                   <div class="descrow"><span style="color: rgb(218, 16, 184);">DESCRIPTION</span> : <span style="text-transform: none;">{{x.description}}</span>
-                    </div>
-
-
+                   <div class="descrow"><span style="color: rgb(221, 33, 90);">Pet Name</span>: <b>{{pet.name}}</b></div>
+                   <div class="descrow"><span style="color: rgb(221, 33, 90);">Current Owner's Username</span> : {{pet.donor_id.username}}</div>
+                   <div class="descrow"><span style="color: rgb(221, 33, 90);">Current Owner's Email</span> : {{pet.donor_id.email}}</div>
+                   <div class="descrow"><span style="color: rgb(221, 33, 90);">Current Owner's Area</span> : {{pet.donor_id.area}}</div>
+                   <div class="descrow"><span style="color: rgb(221, 33, 90);">Current Owner's City</span> : {{pet.donor_id.city}}</div>
+                   <div class="descrow"><span style="color: rgb(221, 33, 90);">Current Owner's Phone</span> : {{pet.donor_id.phone}}</div>
+                   <div class="descrow"><span style="color: rgb(218, 16, 184);">Current Owner's Country</span> : <span style="text-transform: none;">{{pet.donor_id.country}}</span>
+                   <div class="descrow"><span style="color: rgb(221, 33, 90);">Pet Description</span> : {{pet.desc}}</div> 
+                </div>
                 </div>
 
                 <div class="quotation">
-                    <h1>Have any customized suggestion?</h1>
+                    <h1>Have any suggestion?</h1>
                     <a href="{% url 'contact-page' %}" class="quote">CONTACT</a>
                 </div>
     

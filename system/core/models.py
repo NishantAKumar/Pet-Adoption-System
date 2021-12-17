@@ -16,14 +16,14 @@ class Transaction(models.Model):
     desc= models.TextField()
     img = models.ImageField(upload_to='pics')
     donor_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    accepted_req_id = models.ForeignKey('Request', on_delete=models.CASCADE, blank=True)
+    accepted_req_id = models.ForeignKey('Request', on_delete=models.CASCADE, blank=True, null=True)
     
     class Meta:
         verbose_name = "Transaction"
         verbose_name_plural = "Transactions"
 
     def __str__(self):
-        return self.donor_id.name
+        return f"{self.donor_id.username}'s {self.name} "
 
 class Request(models.Model):
     transaction_id = models.ForeignKey(Transaction, on_delete=models.CASCADE)

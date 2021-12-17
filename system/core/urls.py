@@ -6,5 +6,6 @@ urlpatterns = [
     path("explore/", views.exploreRenderer, name="explore-page"),
     path("about/", views.aboutRenderer, name="about-page"),
     path("contact/", views.contactRenderer, name="contact-page"),
-    path("pet/", views.petDetailsRenderer, name="pet-details-page"),
+    path("pet/<int:transaction_id>", views.petDetailsRenderer, name="pet-details-page"),
+    path("profile/<int:user_id>", views.profileRenderer, name="profile-page")
 ]

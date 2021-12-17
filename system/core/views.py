@@ -19,7 +19,7 @@ def homeRenderer(request):
 
 def exploreRenderer(request):
     if request.method == "GET":
-        return render(request, TEMPLATE_MAPPING["explore-page"])
+        return render(request, TEMPLATE_MAPPING["explore-page"], context={"objects": Transaction.objects.all()})
 
 
 def aboutRenderer(request):
@@ -42,6 +42,15 @@ def contactRenderer(request):
         return render(request, TEMPLATE_MAPPING["contact-page"])
 
 
-def petDetailsRenderer(request):
+def petDetailsRenderer(request, transaction_id):
     if request.method == "GET":
-        return render(request, TEMPLATE_MAPPING["pet-details"])
+        return render(request, TEMPLATE_MAPPING["pet-details"], context={"pet": Transaction.objects.get(id=transaction_id)})
+
+
+def profileRenderer(request, user_id):
+    if request.method == "GET":
+        if request.user.id == user_id:
+            return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": True, "profile": User.objects.get(id=request.user.id)})
+        
+        else:
+            return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": False, "profile": User.objects.get(id=request.user.id)})
