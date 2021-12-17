@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import * 
 from django.contrib import messages
+from django.contrib.auth import login, logout
+from django.contrib.auth import authenticate
 
 # Create your views here.
 TEMPLATE_MAPPING = {
@@ -10,6 +12,8 @@ TEMPLATE_MAPPING = {
     "contact-page": "contact.html",
     "pet-details": "petDetails.html",
     "profile-page": "profile.html",
+    "login-page": "login.html",
+    "registration-page": "register.html",
 }
 
 def homeRenderer(request):
@@ -54,3 +58,67 @@ def profileRenderer(request, user_id):
         
         else:
             return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": False, "profile": User.objects.get(id=request.user.id)})
+
+
+def user_login(request):
+    if request.method == "GET":
+        return render(request, TEMPLATE_MAPPING["login-page"])
+    
+    elif request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(username=username, password=password)
+        if user is None:
+            messages.add_message(request, messages.ERROR, "Login Failed")
+            return render(request, TEMPLATE_MAPPING["login-page"])
+        
+        login(request, user)
+
+        return redirect(to="/")
+
+
+def register(request):
+    if request.method == "GET":
+        return render(request, TEMPLATE_MAPPING["registration-page"])
+
+    elif request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        confirm = request.POST.get("confirm")
+        area = request.POST.get("area")
+        city = request.POST.get("city")
+        country = request.POST.get("country")
+        phone = request.POST.get("phone")
+
+        if User.objects.filter(username=username).exists():
+            messages.add_message(request, messages.ERROR, "User already exists!")
+            return render(request, TEMPLATE_MAPPING["registration-page"])
+
+        if User.objects.filter(email=email).exists():
+            messages.add_message(request, messages.ERROR, "Email already exists!")
+            return render(request, TEMPLATE_MAPPING["registration-page"])
+        
+        if password != confirm:
+            messages.add_message(request, messages.ERROR, "Passwords do not match")
+            return render(request, TEMPLATE_MAPPING["registration-page"])
+        
+        User.objects.create_user(
+            username=username,
+            password=password,
+            email=email,
+            area=area,
+            city=city,
+            country=country,
+            phone=phone)
+        
+        return redirect("/")
+
+
+def user_logout(request):
+    if request.method == "GET" and request.user.is_authenticated:
+        logout(request)
+        return redirect("/")
+    elif not request.user.is_authenticated:
+        return redirect("/login")
