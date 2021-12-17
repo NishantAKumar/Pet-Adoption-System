@@ -17,6 +17,7 @@ TEMPLATE_MAPPING = {
     "registration-page": "register.html",
     "transaction-create-page" : "transactionCreate.html",
     "transaction-delete-page" : "transactionDelete.html",
+    "request-delete-page" : "requestDelete.html",
     "transaction-closing-page": "transactionClosing.html"
 }
 
@@ -53,15 +54,38 @@ def contactRenderer(request):
 def petDetailsRenderer(request, transaction_id):
     if request.method == "GET":
         return render(request, TEMPLATE_MAPPING["pet-details"], context={"pet": Transaction.objects.get(id=transaction_id)})
+    elif request.method == "POST":
+        transaction = Transaction.objects.get(id=transaction_id)
+        if request.user.id != transaction.donor_id.id:
+            reason = request.POST.get("reason")
+            applicant = User.objects.get(id=request.user.id)
+            Request.objects.create(transaction_id=Transaction.objects.get(id=transaction_id), reason=reason, applicant_id=applicant)
+            messages.add_message(request, messages.SUCCESS, "Request generated")
+        else:
+            messages.add_message(request, messages.ERROR, "You cannot request a pet from yourself")
+        return render(request, TEMPLATE_MAPPING["pet-details"], context={"pet": Transaction.objects.get(id=transaction_id)})
 
 
 def profileRenderer(request, user_id):
     if request.method == "GET":
         if request.user.id == user_id:
-            return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": True, "profile": User.objects.get(id=request.user.id)})
-        
+            return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": True, "profile": User.objects.get(id=request.user.id), "requests": Request.objects.filter(applicant_id=request.user.id)})
         else:
             return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": False, "profile": User.objects.get(id=request.user.id)})
+
+
+def deleteReqest(request, request_id):
+    if request.method == "GET":
+        return render(request, TEMPLATE_MAPPING["request-delete-page"])
+
+    elif request.method == "POST":
+        Request.objects.get(id=request_id).delete()
+        messages.add_message(
+            request, 
+            messages.SUCCESS,
+            "Request Deleted"
+        )
+        return render(request, TEMPLATE_MAPPING["request-delete-page"])
 
 
 def user_login(request):
@@ -121,6 +145,13 @@ def register(request):
             country=country,
             phone=phone)
         
+        user = authenticate(username=username, password=password)
+        if user is None:
+            messages.add_message(request, messages.ERROR, "Login Failed")
+            return render(request, TEMPLATE_MAPPING["login-page"])
+        
+        login(request, user)
+
         return redirect("/")
 
 
