@@ -35,7 +35,7 @@ class Request(models.Model):
         verbose_name_plural = "Requests"
 
     def __str__(self):
-        return f'{self.applicant_id.username} -> {self.transaction_id.donor_id.name}'
+        return f'{self.applicant_id.username} -> {self.transaction_id.donor_id.username}'
 
 
 class Queries(models.Model):
