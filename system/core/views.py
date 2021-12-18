@@ -165,16 +165,11 @@ def transactionCreator(request):
         return render(request, TEMPLATE_MAPPING["transaction-create-page"])
 
     elif request.method == "POST":
-        name = request.method.get("name")
-        desc = request.method.get("desc")
-        img = request.method.get("image")
+        name = request.POST.get("w3lName")
+        description = request.POST.get("w3lDesc")
+        image = request.POST.get("w3lImage")
         donor = User.objects.get(id=request.user.id)
-        Transaction.objects.create(
-            name=name,
-            desc=desc,
-            img=img,
-            donor_id=donor
-        )
+        Transaction.objects.create(name=name, desc=description, img=image, donor_id=donor)
         messages.add_message(
             request, 
             messages.SUCCESS,

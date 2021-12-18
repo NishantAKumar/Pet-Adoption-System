@@ -13,5 +13,6 @@ urlpatterns = [
     path("login/", views.user_login, name='login-page'),
     path("register/", views.register, name="registration-page"),
     path("logout/", views.user_logout, name="logout"),
-    path('transaction-closing/<int:transaction_id>', views.transactionAcceptedAndClosed, name="transaction-closing-page")
+    path('transaction-closing/<int:transaction_id>', views.transactionAcceptedAndClosed, name="transaction-closing-page"),
+    path("transaction-create/", views.transactionCreator, name="transaction-create-page")
 ]
