@@ -167,7 +167,7 @@ def transactionCreator(request):
     elif request.method == "POST":
         name = request.POST.get("w3lName")
         description = request.POST.get("w3lDesc")
-        image = request.POST.get("w3lImage")
+        image = request.FILES.get("w3lImage")
         donor = User.objects.get(id=request.user.id)
         Transaction.objects.create(name=name, desc=description, img=image, donor_id=donor)
         messages.add_message(

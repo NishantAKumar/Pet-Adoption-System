@@ -108,7 +108,7 @@
             <div class="form-41-mian mt-5 pt-lg-5 pt-md-4">
                 <div class="container">
                     <div class="form-inner-cont">
-                        <form action="{% url 'transaction-create-page' %}" method="post" class="signin-form">
+                        <form action="{% url 'transaction-create-page' %}" method="post" enctype="multipart/form-data" class="signin-form">
                             {% csrf_token %}
                             <div class="row align-form-map">
                                 <div class="col-sm-6 form-input">
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="col-sm-6 form-input">
                                     <label for="w3lImage">Image</label>
-                                    <input type="file" name="w3lImage" placeholder="" accept="image/*">
+                                    <input type="file" name="w3lImage" placeholder="" accept="image/.png .jpeg">
                                 </div>
                             <div class="submit">
                                 <br>
