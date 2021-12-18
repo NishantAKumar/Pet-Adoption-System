@@ -117,7 +117,7 @@
                     <div class="descrow"><span style="color: rgb(221, 33, 90);">Pet Name</span>: <b>{{request.transaction_id.name}}</b></div>
                     <form action="{% url 'request-delete-page' request_id=request.id %}" method="post" class="signin-form">
                         {% csrf_token %}
-                            <div class="submit" style="margin-top: -30px; margin-left: 300px;">
+                            <div class="submit" style="margin-top: -47px; margin-left: 300px; margin-bottom: 20px;">
                                 <button type="submit" class="btn btn-style-white btn-style-primary">Delete Request</button>
                             </div>
                     </form>
@@ -131,7 +131,7 @@
                     <a href="{% url 'transaction-closing-page' transaction_id=transaction.id %}"><div class="descrow"><span style="color: rgb(221, 33, 90);">Pet Name</span>: <b>{{transaction.name}}</b></div></a>
                     <form action="{% url 'transaction-delete-page' transaction_id=transaction.id %}" method="post" class="signin-form">
                         {% csrf_token %}
-                            <div class="submit" style="margin-top: -30px; margin-left: 300px;">
+                            <div class="submit" style="margin-top: -47px; margin-left: 300px; margin-bottom: 20px;">
                                 <button type="submit" class="btn btn-style-white btn-style-primary">Delete Transaction</button>
                             </div>
                     </form>

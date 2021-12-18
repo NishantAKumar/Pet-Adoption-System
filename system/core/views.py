@@ -69,7 +69,7 @@ def petDetailsRenderer(request, transaction_id):
 def profileRenderer(request, user_id):
     if request.method == "GET":
         if request.user.id == user_id:
-            return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": True, "profile": User.objects.get(id=request.user.id), "requests": Request.objects.filter(applicant_id=request.user.id), "transactions": Transaction.objects.filter(donor_id=request.user.id)})
+            return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": True, "profile": User.objects.get(id=request.user.id), "requests": Request.objects.filter(applicant_id=request.user.id), "transactions": Transaction.objects.filter(donor_id=request.user.id, accepted_req_id__isnull=True)})
         else:
             return render(request, TEMPLATE_MAPPING["profile-page"], context={"is_self": False, "profile": User.objects.get(id=request.user.id)})
 
@@ -195,17 +195,18 @@ def transactionAcceptedAndClosed(request, transaction_id):
         return render(request, TEMPLATE_MAPPING["transaction-closing-page"], context={"applicants": applicant_requests})
 
     if request.method == "POST":
-        applicant_id = request.POST.get("applicant")
-        applicant = User.objects.get(id=applicant_id)
+        request_id = request.POST.get("applicant")
+        chosen_request = Request.objects.get(id=request_id)
         transaction = Transaction.objects.get(id=transaction_id)
-        transaction.accepted_req_id = applicant
+        transaction.accepted_req_id = chosen_request
+        transaction.save()
         messages.add_message(
             request,
             messages.SUCCESS,
             "Trasaction Completed and Closed"
         )
 
-        return render(request, TEMPLATE_MAPPING["transaction-closing-page"])
+        return redirect(to=f"/profile/{request.user.id}")
 
 
 # Todo:
