@@ -193,7 +193,10 @@ def transactionDeleter(request, transaction_id):
 def transactionAcceptedAndClosed(request, transaction_id):
     if request.method == "GET":
         applicant_requests = Request.objects.filter(transaction_id=transaction_id)
-        return render(request, TEMPLATE_MAPPING["transaction-closing-page"], context={"applicants": applicant_requests})
+        transaction = Transaction.objects.get(id=transaction_id)
+
+        return render(request, TEMPLATE_MAPPING["transaction-closing-page"], context={"applicants": applicant_requests,
+        "transaction":transaction})
 
     if request.method == "POST":
         request_id = request.POST.get("applicant")

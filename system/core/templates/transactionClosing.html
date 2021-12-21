@@ -126,8 +126,14 @@
       <div class="mainbody">
 
         <div class="description">
+            <div class="left">
+                <div class="img_left">
+                <img src="{{transaction.img.url}}" alt="" class="image-zoom" >
+                </div>
+            </div>
+
             <div class="right">
-                <h1 class="product_header">Requests for {{transaction_id.name}}</h1>
+                <h1 class="product_header">Requests for {{transaction.name}}</h1>
                 <div class="product_info">
                     {% for applicant in applicants %}
                     <div style="border: 2px solid coral; margin-top : 5px; margin-bottom: 20px; margin-right: 100px; padding-left: 10px;">
