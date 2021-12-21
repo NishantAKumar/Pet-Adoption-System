@@ -152,7 +152,11 @@
                             <input type="text" name="reason" id="reason" placeholder="Why you?" />
                         </div>
                         <div class="submit text-right" style="padding-top: 50px;">
-                            <button type="submit" class="btn btn-style-white btn-style-primary">Generate Request</button>
+                        {% if user.id %}
+                        <button type="submit" class="btn btn-style-white btn-style-primary">Generate Request</button>
+                        {% else %}
+                        <a class="btn btn-style-white btn-style-primary" href="{% url 'login-page' %}">Generate Request</a>
+                        {% endif %}
                         </div>
                     </div>
                 </form>

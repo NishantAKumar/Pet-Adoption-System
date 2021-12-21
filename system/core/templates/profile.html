@@ -128,7 +128,7 @@
         <div class="description">
 
             <div class="header">
-                <h1>Name: {{request.user.username}}</h1>
+                <h1>USER : {{request.user.username}}</h1>
             </div>
 
             <div class="left">
@@ -147,6 +147,11 @@
             </div>
             <div class="right">
                 <h1 class="product_header">Your Transactions</h1>
+                <a href="{% url 'transaction-create-page' %}" class="add_post btn btn-style-white btn-style-primary">
+                    ADD
+                    <i class="fa fa-plus"></i>
+                </a>
+
                 <div class="product_info">
                     {% for transaction in transactions %}
                     <a href="{% url 'transaction-closing-page' transaction_id=transaction.id %}"><div class="descrow"><span style="color: rgb(221, 33, 90);">Pet Name</span>: <b>{{transaction.name}}</b></div></a>

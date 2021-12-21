@@ -2,18 +2,22 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Pet Care</title>
-    <!-- google-fonts -->
-    <link href="//fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <!-- //google-fonts -->
-    <!-- Template CSS Style link -->
-    <link rel="stylesheet" href="{% static 'css/style-starter.css' %}">
-</head>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+        <title>Pet Care</title>
+        <!-- google-fonts -->
+        <link href="//fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <!-- //google-fonts -->
+        <!-- Template CSS Style link -->
+        <link rel="stylesheet" href=" {% static 'css/style-starter.css' %}">
+    </head>
+    
 
 <body>
     <!--header-->
@@ -233,11 +237,11 @@
     <!-- //move top -->
 
     <!-- common jquery plugin -->
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <!-- //common jquery plugin -->
 
     <!-- theme switch js (light and dark)-->
-    <script src="./assets/js/theme-change.js"></script>
+    <script src="{% static 'js/theme-change.js' %}"></script>
     <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
@@ -315,7 +319,7 @@
     <!-- //disable body scroll which navbar is in active -->
 
     <!--bootstrap-->
-    <script src="./assets/js/bootstrap.min.js"></script>
+    <script  src="{% static 'js/bootstrap.min.js' %}"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 </body>

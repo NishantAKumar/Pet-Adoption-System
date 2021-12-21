@@ -451,7 +451,8 @@ pre {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
-  margin-left: auto; }
+  margin-left: auto; 
+}
   @media (min-width: 576px) {
     .container {
       max-width: 540px; } }
@@ -8162,7 +8163,8 @@ h1, h2, h3, h4, h5,
   background: #f35588 !important; }
 
 .ftco-section {
-  padding: 7em 0; }
+  padding: 7em 0; 
+}
 
 .ftco-no-pt {
   padding-top: 0; }

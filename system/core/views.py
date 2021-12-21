@@ -28,7 +28,7 @@ def homeRenderer(request):
 
 def exploreRenderer(request):
     if request.method == "GET":
-        return render(request, TEMPLATE_MAPPING["explore-page"], context={"objects": Transaction.objects.filter(accepted_req_id__isnull=True)})
+        return render(request, TEMPLATE_MAPPING["explore-page"], context={"objects": Transaction.objects.filter(accepted_req_id__isnull=True).order_by('-id')})
 
 
 def aboutRenderer(request):
@@ -175,7 +175,8 @@ def transactionCreator(request):
             messages.SUCCESS,
             "Transaction Created"
         )
-        return render(request, TEMPLATE_MAPPING["transaction-create-page"])
+        return redirect(to=f"/profile/{request.user.id}")
+        # return render(request, TEMPLATE_MAPPING["transaction-create-page"])
 
 
 def transactionDeleter(request, transaction_id):
