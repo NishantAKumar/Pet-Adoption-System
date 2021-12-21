@@ -237,6 +237,16 @@ html{
 
 }
 
+.mainbody .description .header{
+    width: calc(100% - 10px);
+    height: fit-content;
+   display: block;
+   margin: 0 auto;
+    overflow: hidden;
+    /* border: 1px solid rgb(12, 46, 5) ; */
+
+}
+
 .mainbody .description .left{
     width: calc(50% - 10px);
     height: fit-content;
@@ -252,7 +262,7 @@ html{
     overflow: hidden;
     padding-left: 20px;
 
-    /* border: 1px solid rgb(0, 247, 255) ; */
+    border: 1px solid rgb(0, 247, 255) ;
     
 }
 
@@ -269,7 +279,8 @@ html{
 
 }
 
-.mainbody .description .right .product_header{
+.mainbody .description .right .product_header,
+.mainbody .description .left .product_header{
     width: calc(100% - 20px );
     height: fit-content;
     padding: 10px 0;
@@ -284,7 +295,7 @@ html{
     /* border: 1px solid red; */
 
 }
-.mainbody .description .right .product_info{
+.mainbody .description .right .product_info, .mainbody .description .left  .product_info{
     width: calc(100% - 20px );
     height: fit-content;
     font-size: 18px;
@@ -298,17 +309,23 @@ html{
 
 }
 
-.mainbody .description .right .product_info .descrow{
+.mainbody .description .right .product_info .descrow,
+.mainbody .description .left .product_info .descrow{
+
     margin:7px auto; 
 
 }
 
-.mainbody .description .right .quotation{
+.mainbody .description .right .quotation,
+.mainbody .description .left .quotation{
+
      /* border: 1px solid red; */
    
 }
 
-.mainbody .description .right .quotation h1{
+.mainbody .description .right .quotation h1,
+.mainbody .description .left .quotation h1{
+
     width: calc(100% - 20px );
     height: fit-content;
     padding: 10px 0;
@@ -323,7 +340,8 @@ html{
     /* border: 1px solid red; */
 }
 
-.mainbody .description .right .quotation .quote{
+.mainbody .description .right .quotation .quote,
+.mainbody .description .left .quotation .quote{
     display: block;
     float: left;
     width: fit-content;
@@ -346,6 +364,7 @@ html{
     /* margin-left: ; */
 }
 
+.mainbody .description .left .quotation .quote:hover,
 .mainbody .description .right .quotation .quote:hover{
     transition: all 0.4s linear;
     border: 2px solid rgb(253, 84, 75);
