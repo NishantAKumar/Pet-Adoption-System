@@ -122,21 +122,25 @@
         <div class="container pb-md-5 py-4">
             <div class="row justify-content-center text-center">
                 <div class="col-md-8">
-                    <div class="section-heading mb-sm-5 mb-4">
+                    <div class="section-heading mb-sm-5 mb-0">
                         <h3 class="title-style mb-2">Explore</h3>
                     </div>
                 </div>
             </div>
+            
             <div class="row">
                 {% for object in objects %}
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" style="margin-top: 45px;margin-bottom: 45px;">
                     <div class="blog-card-single">
                         <div class="grids5-info">
-                            <a href="{{object.img.url}}"><img src="{{object.img.url}}" alt="" /></a>
+                            <a href="{% url 'pet-details-page' transaction_id=object.id %}">                            
+                            <!-- <a href="{{object.img.url}}"> -->
+                                <img src="{{object.img.url}}" alt="" style="height: 300px;" /></a>
                             <div class="blog-info">
                                 <h4>{{object.name}}</h4>
-                                <p>{{object.desc}}</p>
-                                <a class="btn btn-style" href="{% url 'pet-details-page' transaction_id=object.id %}">See Details</a>
+                                <p style="height: 110px;">{{object.desc}}</p>
+                                <a class="btn btn-style" 
+                                href="{% url 'pet-details-page' transaction_id=object.id %}">See Details</a>
                             </div>
                         </div>
                     </div>
