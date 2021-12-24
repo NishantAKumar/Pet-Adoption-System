@@ -325,6 +325,13 @@ html{
 
 }
 
+.mainbody .description .right .product_info div .infor{
+    display: block;
+    width: calc(80% - 0px);
+    border: 1px solid red;
+
+}
+
 .mainbody .description .right .product_info .descrow,
 .mainbody .description .left .product_info .descrow{
 
